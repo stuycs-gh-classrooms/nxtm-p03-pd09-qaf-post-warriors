@@ -58,31 +58,37 @@ ke= Electrostatic constant = 9.0 x 10^9
 ### Simulation 1: Gravity
 Describe how you will attempt to simulate orbital motion.
 
+There will be a fixed orb in the center with a high mass and all orbs gravitate towards each other using the gravity equation.
+Orbs are placed randomly around the screen and can be added or removed.
+
 --- 
 
 ### Simulation 2: Spring
 Describe what your spring simulation will look like. Explain how it will be setup, and how it should behave while running.
 
-YOUR ANSWER HERE
+Visible springs will connect each orb to its 2 (or 1) "neighbour(s)". If the orbs are closer to each other than the spring length, they are pushed apart, 
+if they are farther than the spring length they are pulled in, and they won't be moved if they are the spring length away from each other.
+Orbs are either placed spring length away from each other or randomly around the screen, and can be added or removed.
 
 --- 
 
 ### Simulation 3: Drag
 Describe what your drag simulation will look like. Explain how it will be setup, and how it should behave while running.
 
-YOUR ANSWER HERE
+Orbs are placed around the screen randomly and their velocity will decrease according to the drag equation.
 
 --- 
 
 ### Simulation 4: Custom force
 Describe what your Custom force simulation will look like. Explain how it will be setup, and how it should behave while running.
 
-YOUR ANSWER HERE
+Orbs are placed around the screen randomly with their colour denoting their charge. They will attract or repel each other according to their charge
+and the electrostatic equation.
 
 --- 
 
 ### Simulation 5: Combination
 Describe what your combination simulation will look like. Explain how it will be setup, and how it should behave while running.
 
-YOUR ANSWER HERE
+Orbs are placed around the screen randomly and multiple forces will act on the orbs.
 
