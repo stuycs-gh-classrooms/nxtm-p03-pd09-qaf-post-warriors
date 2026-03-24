@@ -7,7 +7,10 @@ used for making fixed orbs with a fixed colour that you want to place and give s
   FixedOrb(float x, float y, float s, float m)
   {
     super(x, y, s, m);
-    c = color(255, 0, 0);
+     color r=color(255,0,0);
+    color g=color(0,255,0);
+    color c0 = lerpColor(r,g,charge/6+0.5);
+c = c0;
   }
 
   /**
@@ -16,7 +19,10 @@ used for making fixed orbs with a fixed colour placed randomly
   FixedOrb()
   {
     super();
-    c = color(255, 0, 0);
+     color r=color(255,0,0);
+    color g=color(0,255,0);
+    color c0 = lerpColor(r,g,charge/6+0.5);
+c = c0;
   }
 
   /**

@@ -137,7 +137,10 @@ calculates the gravity acting on the orb exerted by the other orb
     direction.normalize();
     
     
-    direction.mult(((charge*other.charge)/(r*r))*elec_k);
+    direction.mult(((abs(charge)*abs(other.charge))/(r*r))*elec_k);
+    if((charge>0 && other.charge>0) || (charge<0 && other.charge<0)) {
+      direction.mult(-1);
+    }
     
     return direction;
   }

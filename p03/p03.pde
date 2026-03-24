@@ -13,17 +13,17 @@ float D_COEF = 0.1;
 
 int SPRING_LENGTH = 50;
 float  SPRING_K = 0.005;
-float ELECTRIC_K = 900;
+float ELECTRIC_K = 1200;
 
 int MOVING = 0;
 int BOUNCE = 1;
 int GRAVITY = 2;
 int DRAGF = 3;
 int ELECTRIC = 4;
-boolean[] toggles = new boolean[5];
-String[] modes = {"Moving", "Bounce", "Gravity", "Drag", "Electric"};
+int SPRINGS = 5;
+boolean[] toggles = new boolean[6];
+String[] modes = {"Moving", "Bounce", "Gravity", "Drag", "Electric", "Springs"};
 
-FixedOrb earth;
 Orb[] orbs;
 int orbCount;
 
@@ -35,7 +35,7 @@ void setup()
   
   makeOrbs(false);
  
-  earth = new FixedOrb(width/2,height/5,100,200);;
+
   println(orbs.length);
 }//setup
 
@@ -48,7 +48,7 @@ void draw()
   //draw the orbs and springs
   for (int o=0; o < orbCount; o++) {
     orbs[o].display();
-    earth.display();
+    
      stroke(10);
      if(o>0) {
     drawSpring(orbs[o],orbs[o-1]);
@@ -59,9 +59,9 @@ void draw()
   }//draw orbs & springs
 
   if (toggles[MOVING]) {
-    
-  //  applySprings();
-
+    if(toggles[5]) {
+    applySprings();
+    }
   
     if(toggles[3]) {
     for (int o=0; o < orbCount; o++) {
@@ -73,10 +73,8 @@ void draw()
       applyElectric();
     }
     if(toggles[2]) {
-      for (int o=0; o < orbCount; o++) {
-      orbs[o].applyForce(orbs[o].getGravity(earth,G_CONSTANT));
-      }
-    }//gravity, drag
+      applyGravity;
+    }
 
     for (int o=0; o < orbCount; o++) {
       orbs[o].move(toggles[BOUNCE]);
@@ -156,6 +154,11 @@ void applyElectric() {
     orbs[i].applyForce(orbs[i].getElectric(orbs[i+1],ELECTRIC_K));
   }
 }
+
+void applyGravity() {
+  orbs[0].applyForce(orbs[0].getGravity(orbs[1],G_CONSTANT));
+  orbs[orbCount-1].applyForce(orbs[orbCount-1.getGravity(orbs[orbCount-2],G_CONSTANT));
+}
 void addOrb()
 {
   if(orbCount<orbs.length) {
@@ -189,6 +192,9 @@ void keyPressed()
   }
   if (key=='e') {
    toggles[ELECTRIC] = !toggles[ELECTRIC]; 
+  }
+  if (key=='s') {
+    toggles[SPRINGS] = !toggles[SPRINGS];
   }
   if (key == '1') {
     makeOrbs(true);
