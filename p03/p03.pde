@@ -69,11 +69,11 @@ void draw()
     }
     }
     if(toggles[4]) {
-      //applyElectricity();
-      applyElectric();
+      applyElectricity();
+      //applyElectric();
     }
     if(toggles[2]) {
-      applyGravity;
+      applyGravity();
     }
 
     for (int o=0; o < orbCount; o++) {
@@ -135,7 +135,7 @@ void applySprings()
     orbs[i].applyForce(orbs[i].getSpring(orbs[i+1],SPRING_LENGTH,SPRING_K));
   }
 }//applySprings
-/*
+
 void applyElectricity() {
   for(int i = 0;i<orbCount;i++) {
     for(int j = 0;j<orbCount;j++) {
@@ -145,7 +145,7 @@ void applyElectricity() {
     }
   }
 }
-*/
+
 void applyElectric() {
   orbs[0].applyForce(orbs[0].getElectric(orbs[1],ELECTRIC_K));
   orbs[orbCount-1].applyForce(orbs[orbCount-1].getElectric(orbs[orbCount-2],ELECTRIC_K));
@@ -157,7 +157,11 @@ void applyElectric() {
 
 void applyGravity() {
   orbs[0].applyForce(orbs[0].getGravity(orbs[1],G_CONSTANT));
-  orbs[orbCount-1].applyForce(orbs[orbCount-1.getGravity(orbs[orbCount-2],G_CONSTANT));
+  orbs[orbCount-1].applyForce(orbs[orbCount-1].getGravity(orbs[orbCount-2],G_CONSTANT));
+  for(int i = 1;i<orbCount-1;i++) {
+   orbs[i].applyForce(orbs[i].getElectric(orbs[i-1],ELECTRIC_K));
+   orbs[1].applyForce(orbs[i].getElectric(orbs[i+1],ELECTRIC_K));
+  }
 }
 void addOrb()
 {
